@@ -1,7 +1,9 @@
-import { Container, createTheme, CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useMemo, useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
 import { ThemeContext } from "./context";
+import { Home, Store, About } from "./pages";
 
 const App: React.FC = () => {
   const { theme } = useContext(ThemeContext);
@@ -40,7 +42,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <Navbar />
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         component="main"
         sx={{
           display: "flex",
@@ -54,9 +56,11 @@ const App: React.FC = () => {
           pb: 5,
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: 700 }}>
-          Hello World
-        </Typography>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </Container>
     </ThemeProvider>
   );

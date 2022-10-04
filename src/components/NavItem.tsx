@@ -4,9 +4,9 @@ import { NavLink } from './';
 
 const NavItem: React.FC = () => {
   return (
-    <Stack direction="row" spacing={3}>
-      <NavLink href="#" name="Store" />
-      <NavLink href="#" name="About" />
+    <Stack direction="row" spacing={1}>
+      <NavLink href="/store" name="Store" />
+      <NavLink href="/about" name="About" />
     </Stack>
   );
 };
