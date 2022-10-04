@@ -1,4 +1,4 @@
-import React, { createContext, useCallback } from "react";
+import React, { createContext, useCallback, useContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface ThemeCtx {
@@ -7,10 +7,12 @@ interface ThemeCtx {
   colorMode: () => void;
 }
 
-export const ThemeContext = createContext<ThemeCtx>({
+const ThemeContext = createContext<ThemeCtx>({
   theme: "dark",
   colorMode: () => {},
 });
+
+export const useThemeMode = (): ThemeCtx => useContext(ThemeContext);
 
 const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useLocalStorage<"light" | "dark">("Theme", "dark");

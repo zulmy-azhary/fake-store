@@ -1,75 +1,32 @@
-import {
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
+import { ImageList, Skeleton, Box } from "@mui/material";
 import React from "react";
-import { useEffect, useState } from "react";
-import { useTheme } from "@mui/material/styles";
-
-interface Product {
-  id: number;
-  image: string;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  rating: Record<string, number>;
-}
+import { ProductCard } from "../components";
+import { useProducts } from "../context";
+import type { ProductProps } from "../types";
 
 const Store: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const theme = useTheme();
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  const { products } = useProducts();
 
   return (
-    <>
-      {products.length ? (
-        <ImageList cols={4} gap={16} sx={{ width: "100%" }}>
-          {products.map((product: Product) => (
-            <ImageListItem key={product.image} sx={{ width: 248 }}>
-              <img
-                src={product.image}
-                srcSet={product.image}
-                alt={product.title}
-                loading="lazy"
-              />
-              <ImageListItemBar
-                title={
-                  <Typography
-                    component="h4"
-                    variant="h4"
-                    sx={{ fontWeight: "bold", fontSize: 18, color: theme.palette.primary.main }}
-                    noWrap
-                  >
-                    {product.title}
-                  </Typography>
-                }
-                subtitle={
-                  <Typography
-                    component="p"
-                    variant="subtitle1"
-                    sx={{ fontSize: 14, color: theme.palette.success.light }}
-                  >
-                    {product.category}
-                  </Typography>
-                }
-                position="below"
-              />
-            </ImageListItem>
+    <ImageList cols={4} gap={24} sx={{ width: "100%", overflowY: "initial" }}>
+      {products.length
+        ? products.map((product: ProductProps) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        : Array.from(new Array(12)).map((_, idx: number) => (
+            <Box
+              key={idx}
+              width={248}
+              sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+            >
+              <Skeleton variant="rectangular" width="100%" height={355} />
+              <Skeleton width="100%" height={18} sx={{ mt: 0.5 }} />
+              <Skeleton width="60%" height={14} sx={{ mt: 0.5 }} />
+              <Skeleton width="50%" height={30} sx={{ mt: 0.5 }} />
+              <Skeleton width="100%" height={62} />
+            </Box>
           ))}
-        </ImageList>
-      ) : (
-        <CircularProgress />
-      )}
-    </>
+    </ImageList>
   );
 };
 
