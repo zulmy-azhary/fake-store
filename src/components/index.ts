@@ -6,3 +6,4 @@ export { default as CartList } from "./CartList";
 export { default as CartItem } from "./CartItem";
 export { default as Toggle } from "./Toggle";
 export { default as ProductCard } from "./ProductCard";
+export { default as CustomButton } from "./CustomButton";

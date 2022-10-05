@@ -2,17 +2,17 @@ import {
   Box,
   Container,
   Stack,
-  useMediaQuery,
   Typography,
   Button,
 } from "@mui/material";
 import { Cart, NavItem, Toggle, NavLink } from "./";
 import reactLogo from "../assets/react.svg";
 import { useTheme } from "@mui/material/styles";
+import { breakpoints } from "../helper";
 
 const Navbar: React.FC = () => {
   const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+  const mediaState = breakpoints(true, false) as boolean;
 
   return (
     <Box
@@ -47,10 +47,10 @@ const Navbar: React.FC = () => {
             </Typography>
           </Button>
         </NavLink>
-        {!sm && <NavItem />}
+        {!mediaState && <NavItem />}
         <Stack direction="row" spacing={3}>
           <Cart />
-          {!sm && <Toggle />}
+          {!mediaState && <Toggle />}
         </Stack>
       </Container>
     </Box>

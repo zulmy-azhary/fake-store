@@ -54,7 +54,7 @@ const App: React.FC = () => {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
-              pt: 15,
+              pt: 20,
               pb: 5,
             }}
           >

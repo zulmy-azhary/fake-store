@@ -9,7 +9,7 @@ interface ShoppingCartCtx {
   decreaseQty: (id: number) => void;
   removeCart: (id: number) => void;
   cartQuantity: number;
-  cartItems: CartItemProps[]
+  cartItems: CartItemProps[];
 }
 
 const ShoppingCartContext = createContext<ShoppingCartCtx>({} as ShoppingCartCtx);
@@ -24,15 +24,15 @@ const ShoppingCartProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   );
 
   const getQuantity = (id: number): number => {
-    return cartItems.find((item: CartItemProps) => item.id === id)?.quantity || 0;
+    return cartItems.find((item: CartItemProps): boolean => item.id === id)?.quantity || 0;
   };
 
   const increaseQty = (id: number): void => {
-    setCartItems((prev) => {
-      if (!prev.find((item: CartItemProps) => item.id === id))
+    setCartItems(prev => {
+      if (!prev.find((item: CartItemProps): boolean => item.id === id))
         return [...prev, { id, quantity: 1 }];
 
-      return prev.map((item: CartItemProps) => {
+      return prev.map((item: CartItemProps): CartItemProps => {
         if (item.id === id) return { ...item, quantity: item.quantity + 1 };
         return item;
       });
@@ -40,11 +40,11 @@ const ShoppingCartProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   };
 
   const decreaseQty = (id: number): void => {
-    setCartItems((prev) => {
-      if (prev.find((item: CartItemProps) => item.id === id)?.quantity === 1)
+    setCartItems(prev => {
+      if (prev.find((item: CartItemProps): boolean => item.id === id)?.quantity === 1)
         return prev.filter((item: CartItemProps) => item.id !== id);
 
-      return prev.map((item: CartItemProps) => {
+      return prev.map((item: CartItemProps): CartItemProps => {
         if (item.id === id) return { ...item, quantity: item.quantity - 1 };
         return item;
       });
@@ -52,8 +52,8 @@ const ShoppingCartProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   };
 
   const removeCart = (id: number): void => {
-    setCartItems((prev) => {
-      return prev.filter((item: CartItemProps) => item.id !== id);
+    setCartItems(prev => {
+      return prev.filter((item: CartItemProps): boolean => item.id !== id);
     });
   };
 
