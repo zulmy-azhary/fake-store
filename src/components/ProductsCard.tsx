@@ -1,8 +1,16 @@
-import { ImageListItem, ImageListItemBar, Typography, Button, ListItemText } from "@mui/material";
+import {
+  ImageListItem,
+  ImageListItemBar,
+  Typography,
+  Button,
+  ListItemText,
+  Box,
+} from "@mui/material";
 import { NavLink, ProductsAction } from ".";
 import { formatCurrency } from "../helper";
 import type { ProductProps } from "../types";
 import { useShoppingCart } from "../context";
+import Tooltip from "@mui/material/Tooltip/Tooltip";
 
 interface Props {
   product: ProductProps;
@@ -14,13 +22,28 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
 
   return (
     <ImageListItem sx={{ width: 248, justifySelf: "center" }}>
-      <img
-        src={product.image}
-        srcSet={product.image}
-        alt={product.title}
-        loading="lazy"
-        style={{ objectFit: "contain", backgroundColor: "#FFF" }}
-      />
+      <NavLink
+        href={`/store/product/${product.id}`}
+        sx={{ backgroundColor: "#FFF", height: "100%" }}
+      >
+        <Tooltip title={product.title} arrow>
+          <Box
+            component="img"
+            sx={{
+              objectFit: "contain",
+              transform: "scale(0.8)",
+              width: "100%",
+              height: "100%",
+              transitionDuration: "300ms",
+              "&:hover": { transform: "scale(1)" },
+            }}
+            src={product.image}
+            srcSet={product.image}
+            alt={product.title}
+            loading="lazy"
+          />
+        </Tooltip>
+      </NavLink>
       <ImageListItemBar
         title={
           <NavLink href={`/store/product/${product.id}`}>

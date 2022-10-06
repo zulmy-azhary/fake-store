@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { formatCurrency } from "../helper";
 import type { ProductProps } from "../types";
+import { NavLink } from '.';
 
 interface Props {
   product: ProductProps;
@@ -21,21 +22,23 @@ const CartItemInfos: React.FC<Props> = ({ product, quantity }) => {
         },
       })}
     >
-      <Typography
-        component="h2"
-        variant="overline"
-        sx={(theme) => ({
-          fontSize: 13,
-          fontWeight: "500",
-          lineHeight: 1.5,
-          [theme.breakpoints.down("sm")]: {
-            fontSize: 12,
-            lineHeight: 1.2,
-          },
-        })}
-      >
-        {product.title}
-      </Typography>
+      <NavLink href={`/store/product/${product.id}`}>
+        <Typography
+          component="h2"
+          variant="overline"
+          sx={(theme) => ({
+            fontSize: 13,
+            fontWeight: "500",
+            lineHeight: 1.5,
+            [theme.breakpoints.down("sm")]: {
+              fontSize: 12,
+              lineHeight: 1.2,
+            },
+          })}
+        >
+          {product.title}
+        </Typography>
+      </NavLink>
       <Typography component="p" variant="subtitle2" sx={{ fontSize: 12, color: "text.secondary" }}>
         {formatCurrency(product.price)}
         <Typography component="span" variant="subtitle1" sx={{ fontSize: 9, ml: 0.75 }}>

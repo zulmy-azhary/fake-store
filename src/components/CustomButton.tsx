@@ -26,8 +26,8 @@ const CustomButton: React.FC<React.PropsWithChildren & Props> = ({
           borderRadius: 1,
           p: 0.5,
           "&:disabled": {
-            bgcolor: blueGrey[50],
-            color: blueGrey.A200,
+            bgcolor: theme.palette.mode === "dark" ? blueGrey[900] : blueGrey[50],
+            color: theme.palette.mode === "dark" ? blueGrey.A400 : blueGrey.A200,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

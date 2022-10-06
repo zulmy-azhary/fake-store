@@ -4,10 +4,17 @@ import { useState } from "react";
 import { useShoppingCart } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Cart: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { cartQuantity } = useShoppingCart();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const toggleDrawer = (open: boolean) => (e: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -48,7 +55,7 @@ const Cart: React.FC = () => {
           </Box>
           <Box
             sx={{
-              pt: 6,
+              pt: 5,
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
