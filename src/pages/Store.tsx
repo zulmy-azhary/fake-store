@@ -1,6 +1,6 @@
 import { ImageList, Skeleton, Box } from "@mui/material";
 import React from "react";
-import { ProductCard } from "../components";
+import { ProductsCard } from "../components";
 import { useProducts } from "../context";
 import { breakpoints } from "../helper";
 import type { ProductProps } from "../types";
@@ -13,13 +13,18 @@ const Store: React.FC = () => {
     <ImageList cols={mediaState} gap={24} sx={{ width: "100%", overflowY: "initial", m: 0 }}>
       {products.length
         ? products.map((product: ProductProps) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductsCard key={product.id} product={product} />
           ))
         : Array.from(new Array(12)).map((_, idx: number) => (
             <Box
               key={idx}
-              width={248}
-              sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifySelf: "center" }}
+              sx={{
+                width: 248,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifySelf: "center",
+              }}
             >
               <Skeleton variant="rectangular" width="100%" height={355} />
               <Skeleton variant="text" width="100%" height={18} sx={{ mt: 0.5 }} />

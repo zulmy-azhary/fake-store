@@ -21,8 +21,8 @@ export const breakpoints = (
   const lgBreakpoint = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (smBreakpoint) return sm;
-  if (mdBreakpoint) return md;
-  if (lgBreakpoint) return lg;
+  if (mdBreakpoint) return md !== undefined ? md : sm;
+  if (lgBreakpoint) return lg !== undefined ? lg : md;
 
-  return xl;
+  return xl === undefined ? lg : xl;
 };

@@ -1,22 +1,20 @@
 import { Box, Badge, Drawer, IconButton, Typography } from "@mui/material";
+import { CartList, TotalCart } from ".";
 import { useState } from "react";
+import { useShoppingCart } from "../context";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useProducts, useShoppingCart } from "../context";
 import CloseIcon from "@mui/icons-material/Close";
-import { CartList } from "./";
-import { formatCurrency } from "../helper/index";
-import type { CartItemProps, ProductProps } from "../types";
 
 const Cart: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { cartItems, cartQuantity } = useShoppingCart();
-  const { products } = useProducts();
+  const { cartQuantity } = useShoppingCart();
 
   const toggleDrawer = (open: boolean) => (e: React.KeyboardEvent | React.MouseEvent) => {
     if (
       e.type === "keydown" &&
       ((e as React.KeyboardEvent).key === "Tab" || (e as React.KeyboardEvent).key === "Shift")
-    ) return;
+    )
+      return;
 
     setOpen(open);
   };
@@ -29,13 +27,17 @@ const Cart: React.FC = () => {
       </IconButton>
       <Drawer anchor={"right"} open={open} onClose={toggleDrawer(false)}>
         <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          rowGap={8}
-          width={512}
-          height="100%"
-          sx={{ overflowX: "hidden", bgcolor: "background.default", px: 2, pt: 2.5, pb: 10 }}
+          sx={(theme) => ({
+            height: "100%",
+            overflowX: "hidden",
+            bgcolor: "background.default",
+            px: 2,
+            py: 2.5,
+            width: "100vw",
+            [theme.breakpoints.up("sm")]: {
+              width: cartQuantity ? "100%" : 512,
+            },
+          })}
           role="presentation"
         >
           <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -44,21 +46,17 @@ const Cart: React.FC = () => {
             </Typography>
             <CloseIcon onClick={toggleDrawer(false)} sx={{ cursor: "pointer" }} />
           </Box>
-          <CartList />
-          <Box display="flex" columnGap={5} justifyContent="flex-end">
-            <Typography component="p" variant="body1" textAlign="center" sx={{ fontWeight: "bold", color: "text.primary" }}>
-              Total
-            </Typography>
-            <Typography component="p" variant="body1" textAlign="center" sx={{ fontWeight: "bold", color: "text.primary" }}>
-              {formatCurrency(
-                cartItems.reduce((total: number, cartItem: CartItemProps) => {
-                  const product = products.find(
-                    (product: ProductProps) => product.id === cartItem.id
-                  );
-                  return total + (product?.price || 0) * cartItem.quantity;
-                }, 0)
-              )}
-            </Typography>
+          <Box
+            sx={{
+              pt: 6,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              rowGap: 5,
+            }}
+          >
+            <CartList />
+            <TotalCart />
           </Box>
         </Box>
       </Drawer>

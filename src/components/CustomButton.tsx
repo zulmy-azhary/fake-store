@@ -1,28 +1,39 @@
-import { IconButton } from "@mui/material";
+import { IconButton, SxProps, Theme } from "@mui/material";
 import React from "react";
+import { blueGrey } from "@mui/material/colors";
 
 interface Props {
   onClick: () => void;
-  bgColor: string;
-  size?: "small" | "medium" | "large";
+  bgColor?: string;
+  disabled?: boolean;
+  sx?: SxProps<Theme>;
 }
 
 const CustomButton: React.FC<React.PropsWithChildren & Props> = ({
   children,
   onClick,
-  size,
   bgColor,
+  disabled,
+  sx = [],
 }) => {
   return (
     <IconButton
-      size={size}
-      sx={{
-        bgcolor: bgColor,
-        color: "text.primary",
-        borderRadius: 1,
-        p: 0.5,
-      }}
+      size="small"
+      sx={[
+        (theme) => ({
+          bgcolor: bgColor,
+          color: theme.palette.background.paper,
+          borderRadius: 1,
+          p: 0.5,
+          "&:disabled": {
+            bgcolor: blueGrey[50],
+            color: blueGrey.A200,
+          },
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </IconButton>

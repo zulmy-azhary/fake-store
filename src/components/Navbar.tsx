@@ -1,18 +1,12 @@
-import {
-  Box,
-  Container,
-  Stack,
-  Typography,
-  Button,
-} from "@mui/material";
-import { Cart, NavItem, Toggle, NavLink } from "./";
+import { Box, Container, Stack, Typography, Button } from "@mui/material";
+import { Cart, NavItem, Toggle, NavLink } from ".";
 import reactLogo from "../assets/react.svg";
 import { useTheme } from "@mui/material/styles";
-import { breakpoints } from "../helper";
+import { useMediaQuery } from "@mui/material";
 
 const Navbar: React.FC = () => {
   const theme = useTheme();
-  const mediaState = breakpoints(true, false) as boolean;
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
@@ -23,7 +17,7 @@ const Navbar: React.FC = () => {
         left: 0,
         right: 0,
         zIndex: 9,
-        borderBottom: "1px solid",
+        boxShadow: 3,
         bgcolor: "background.default",
       }}
     >
@@ -47,10 +41,10 @@ const Navbar: React.FC = () => {
             </Typography>
           </Button>
         </NavLink>
-        {!mediaState && <NavItem />}
+        {!mobile && <NavItem />}
         <Stack direction="row" spacing={3}>
           <Cart />
-          {!mediaState && <Toggle />}
+          {!mobile && <Toggle />}
         </Stack>
       </Container>
     </Box>

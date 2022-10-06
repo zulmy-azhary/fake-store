@@ -1,6 +1,6 @@
 import { Stack, ListItemText } from "@mui/material";
 import React from "react";
-import { NavLink } from "./";
+import { NavLink } from ".";
 
 const NavItem: React.FC = () => {
   return (
