@@ -20,8 +20,7 @@ const Cart: React.FC = () => {
     if (
       e.type === "keydown" &&
       ((e as React.KeyboardEvent).key === "Tab" || (e as React.KeyboardEvent).key === "Shift")
-    )
-      return;
+    ) return;
 
     setOpen(open);
   };
@@ -36,11 +35,15 @@ const Cart: React.FC = () => {
         <Box
           sx={(theme) => ({
             height: "100%",
+            display: "flex",
+            flexDirection: "column",
             overflowX: "hidden",
             bgcolor: "background.default",
             px: 2,
-            py: 2.5,
+            pt: 2.5,
+            pb: 10,
             width: "100vw",
+            rowGap: 5,
             [theme.breakpoints.up("sm")]: {
               width: cartQuantity ? "100%" : 512,
             },
@@ -51,15 +54,17 @@ const Cart: React.FC = () => {
             <Typography component="h2" variant="overline" fontSize={20} fontWeight="bold">
               Cart List
             </Typography>
-            <CloseIcon onClick={toggleDrawer(false)} sx={{ cursor: "pointer" }} />
+            <IconButton onClick={toggleDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
           </Box>
           <Box
             sx={{
-              pt: 5,
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
               rowGap: 5,
+              height: "100%"
             }}
           >
             <CartList />

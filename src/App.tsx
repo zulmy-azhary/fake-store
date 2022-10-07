@@ -62,6 +62,7 @@ const App: React.FC = () => {
               <Route index element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:id" element={<Details />} />
+              <Route path="/store/category" element={<Categories />} />
               <Route path="/store/category/:id" element={<Categories />} />
               <Route path="/about" element={<About />} />
             </Routes>

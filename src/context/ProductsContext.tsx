@@ -7,7 +7,7 @@ interface ProductsCtx {
 
 const ProductsContext = createContext<ProductsCtx>({} as ProductsCtx);
 
-export const useProducts = () => useContext(ProductsContext);
+export const useProducts = (): ProductsCtx => useContext(ProductsContext);
 
 const ProductsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [products, setProducts] = useState<ProductProps[]>([]);
@@ -25,4 +25,4 @@ const ProductsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   )
 }
 
-export default ProductsProvider
+export default ProductsProvider;

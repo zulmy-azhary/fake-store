@@ -9,7 +9,7 @@ const Toggle: React.FC = () => {
   const { colorMode } = useThemeMode();
 
   return (
-    <IconButton onClick={colorMode}>
+    <IconButton onClick={colorMode} aria-label="Theme Toggle">
       {theme.palette.mode === "dark" ? <LightModeIcon /> : <ModeNightIcon />}
     </IconButton>
   );
