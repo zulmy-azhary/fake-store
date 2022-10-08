@@ -6,12 +6,12 @@ import { breakpoints } from "../helper";
 import type { ProductProps } from "../types";
 
 const Store: React.FC = () => {
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
   const mediaState = breakpoints(1, 2, 3, 4) as number;
 
   return (
     <ImageList cols={mediaState} gap={24} sx={{ width: "100%", overflowY: "initial", m: 0 }}>
-      {products.length
+      {!loading
         ? products.map((product: ProductProps) => (
             <ProductsCard key={product.id} product={product} />
           ))
@@ -27,9 +27,10 @@ const Store: React.FC = () => {
               }}
             >
               <Skeleton variant="rectangular" width="100%" height={355} />
-              <Skeleton variant="text" width="100%" height={18} sx={{ mt: 0.5 }} />
-              <Skeleton variant="text" width="60%" height={14} sx={{ mt: 0.5 }} />
-              <Skeleton variant="text" width="50%" height={30} sx={{ mt: 0.5 }} />
+              <Skeleton variant="text" width="100%" height={24} sx={{ mt: 0.5 }} />
+              <Skeleton variant="text" width="60%" height={16} sx={{ mt: 0.5 }} />
+              <Skeleton variant="text" width="80%" height={18} sx={{ mt: 0.5 }} />
+              <Skeleton variant="text" width="50%" height={32} sx={{ mt: 0.5 }} />
               <Skeleton variant="text" width="100%" height={62} />
             </Box>
           ))}

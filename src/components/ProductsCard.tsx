@@ -5,8 +5,9 @@ import {
   Button,
   ListItemText,
   Box,
+  Rating,
 } from "@mui/material";
-import { NavLink, ProductsAction } from ".";
+import { Image, NavLink, ProductRating, ProductsAction } from ".";
 import { formatCurrency } from "../helper";
 import type { ProductProps } from "../types";
 import { useShoppingCart } from "../context";
@@ -26,22 +27,8 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
         href={`/store/product/${product.id}`}
         sx={{ backgroundColor: "#FFF", height: "100%" }}
       >
-        <Tooltip title={product.title} arrow>
-          <Box
-            component="img"
-            sx={{
-              objectFit: "contain",
-              transform: "scale(0.8)",
-              width: "100%",
-              height: "100%",
-              transitionDuration: "300ms",
-              "&:hover": { transform: "scale(1)" },
-            }}
-            src={product.image}
-            srcSet={product.image}
-            alt={product.title}
-            loading="lazy"
-          />
+        <Tooltip title={product.title} arrow followCursor>
+          <Image product={product} />
         </Tooltip>
       </NavLink>
       <ImageListItemBar
@@ -72,6 +59,7 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
                 {product.category}
               </Typography>
             </NavLink>
+            <ProductRating rate={product.rating.rate} count={product.rating.count} />
             <Typography component="p" variant="h6">
               {formatCurrency(product.price)}
             </Typography>

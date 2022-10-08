@@ -2,7 +2,7 @@ import { ImageListItem, Box } from "@mui/material";
 import React from "react";
 import { useProducts } from "../context";
 import type { CartItemProps, ProductProps } from "../types";
-import { CartAction, CartItemInfos, NavLink } from '.';
+import { CartAction, CartItemInfos, Image, NavLink } from '.';
 
 const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
   const { products } = useProducts();
@@ -19,12 +19,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
     >
       <ImageListItem sx={{ width: 120, bgcolor: "#FFF" }}>
         <NavLink href={`/store/product/${product.id}`} sx={{ height: 100 }}>
-          <Box component="img"
-            src={product.image}
-            alt={product.title}
-            loading="lazy"
-            sx={{ width: "100%", height: "100%", objectFit: "contain" }}
-          />
+          <Image product={product} />
         </NavLink>
       </ImageListItem>
       <Box

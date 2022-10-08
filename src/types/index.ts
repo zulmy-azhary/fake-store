@@ -1,14 +1,21 @@
+type ID = number;
+
 export interface ProductProps {
-  id: number;
+  id: ID;
   image: string;
   title: string;
   price: number;
   category: string;
   description: string;
-  rating: Record<string, number>;
+  rating: ProductRatingProps;
+}
+
+export interface ProductRatingProps {
+  rate: number;
+  count: number;
 }
 
 export interface CartItemProps {
-  id: number;
+  id: ID;
   quantity: number;
 }

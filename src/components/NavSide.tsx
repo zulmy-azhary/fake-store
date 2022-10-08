@@ -31,7 +31,7 @@ const NavSide: React.FC<Props> = ({ isMobile }) => {
 
   return (
     <>
-      <IconButton aria-label="cart" onClick={toggleDrawer(true)}>
+      <IconButton aria-label="Navbar Side" onClick={toggleDrawer(true)}>
         <MenuIcon />
       </IconButton>
       <Drawer anchor={"right"} open={isOpen} onClose={toggleDrawer(false)}>

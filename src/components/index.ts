@@ -13,3 +13,5 @@ export { default as ProductsCard } from "./ProductsCard";
 export { default as ProductsAction } from "./ProductsAction";
 export { default as QuantityAction } from "./QuantityAction";
 export { default as CustomButton } from "./CustomButton";
+export { default as Image } from "./Image";
+export { default as ProductRating } from "./ProductRating";

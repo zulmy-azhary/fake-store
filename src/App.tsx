@@ -40,35 +40,42 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <CssBaseline />
-      <ProductsProvider>
-        <CartProvider>
+      <CartProvider>
+        <ProductsProvider>
           <Navbar />
-          <Container
-            maxWidth="lg"
-            component="main"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-              minHeight: "100vh",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              pt: 20,
-              pb: 5,
-            }}
-          >
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="/store" element={<Store />} />
-              <Route path="/store/product/:id" element={<Details />} />
-              <Route path="/store/category" element={<Categories />} />
-              <Route path="/store/category/:id" element={<Categories />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </Container>
-        </CartProvider>
-      </ProductsProvider>
+        </ProductsProvider>
+        <Container
+          maxWidth="lg"
+          component="main"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+            minHeight: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            pt: 20,
+            pb: 5,
+          }}
+        >
+          <Routes>
+            <Route index element={<Home />} />
+            <Route
+              path="/store"
+              element={
+                <ProductsProvider>
+                  <Store />
+                </ProductsProvider>
+              }
+            />
+            <Route path="/store/product/:id" element={<Details />} />
+            <Route path="/store/category" element={<Categories />} />
+            <Route path="/store/category/:id" element={<Categories />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Container>
+      </CartProvider>
     </ThemeProvider>
   );
 };

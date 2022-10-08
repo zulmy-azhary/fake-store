@@ -1,13 +1,15 @@
 import React, { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import type { CartItemProps } from "../types";
 import { useContext } from "react";
+import type { CartItemProps } from "../types";
+
+type CartAction<T, R> = (id: T) => R;
 
 interface ShoppingCartCtx {
-  getQuantity: (id: number) => number;
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
-  removeCart: (id: number) => void;
+  getQuantity: CartAction<number, number>;
+  increaseQty: CartAction<number, void>;
+  decreaseQty: CartAction<number, void>;
+  removeCart: CartAction<number, void>;
   cartQuantity: number;
   cartItems: CartItemProps[];
 }

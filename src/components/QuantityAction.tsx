@@ -25,14 +25,14 @@ const QuantityAction: React.FC<React.PropsWithChildren & Props> = ({
     <Box
       sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", columnGap: 1 }}
     >
-        <CustomButton
-          bgColor={theme.palette.primary.main}
-          onClick={() => decreaseQty(id)}
-          disabled={quantity <= 1 && true}
-          sx={{ "&:hover, &.Mui-focusVisible": { bgcolor: theme.palette.primary.dark } }}
-        >
-          <RemoveIcon sx={{ fontSize: size }} />
-        </CustomButton>
+      <CustomButton
+        bgColor={theme.palette.primary.main}
+        onClick={() => decreaseQty(id)}
+        disabled={quantity <= 1 && true}
+        sx={{ "&:hover, &.Mui-focusVisible": { bgcolor: theme.palette.primary.dark } }}
+      >
+        <RemoveIcon sx={{ fontSize: size }} />
+      </CustomButton>
       {children}
       <CustomButton
         bgColor={theme.palette.primary.main}
