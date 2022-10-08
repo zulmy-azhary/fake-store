@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { ThemeProvider as ThemeContextProvider } from "./context";
+import { ThemeProvider } from "./context";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeContextProvider>
+    <ThemeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </ThemeContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

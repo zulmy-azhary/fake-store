@@ -1,30 +1,31 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import type { ProductProps } from "../types";
-import { Box } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/material";
 
 interface Props {
   product: ProductProps;
+  sx?: SxProps<Theme>;
 }
 
-const Image: React.ForwardRefRenderFunction<HTMLImageElement, Props> = (props, ref) => {
+const Image: React.FC<Props> = ({ product, sx }) => {
   return (
     <Box
-      ref={ref}
       component="img"
-      sx={{
-        objectFit: "contain",
-        transform: "scale(0.8)",
-        width: "100%",
-        height: "100%",
-        transitionDuration: "300ms",
-        "&:hover": { transform: "scale(0.95)" },
-      }}
-      src={props.product.image}
-      alt={props.product.title}
-      {...props}
+      sx={[
+        {
+          objectFit: "contain",
+          transform: "scale(0.8)",
+          width: "100%",
+          height: "100%",
+          transitionDuration: "300ms",
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      src={product.image}
+      alt={product.title}
       loading="lazy"
     />
   );
 };
 
-export default forwardRef(Image);
+export default Image;

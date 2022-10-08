@@ -26,7 +26,7 @@ const ProductsAction: React.FC<Props> = ({ id, quantity }) => {
         <DeleteIcon />
       </CustomButton>
       <QuantityAction id={id} quantity={quantity}>
-        <Typography component="h6" variant="body1" sx={{ fontWeight: 700 }}>
+        <Typography component="span" variant="body1" sx={{ fontWeight: 700 }}>
           {quantity}
         </Typography>
       </QuantityAction>

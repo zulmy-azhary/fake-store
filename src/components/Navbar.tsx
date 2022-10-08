@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
         <NavLink href="/">
           <Button
             sx={{ borderRadius: 1 }}
-            startIcon={<img src={reactLogo} alt="Marketplace Logo" />}
+            startIcon={<img src={reactLogo} alt="Marketplace Logo" width={36} height={32} />}
           >
             <Typography sx={{ color: theme.palette.text.primary, fontWeight: 600 }}>
               Fake Store

@@ -22,23 +22,22 @@ const ProductsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     fetch("https://fakestoreapi.com/products", { signal })
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data)
+        setProducts(data);
         setLoading(false);
-      }).catch(err => {
-        if(err.name === "AbortError") return;
       })
-    
+      .catch((err) => {
+        if (err.name === "AbortError") return;
+      });
+
     // Clean up
-    return () => {
-      controller.abort();
-    }
+    return () => controller.abort();
   }, []);
 
   return (
     <ProductsContext.Provider value={{ products, loading }}>
       {children}
     </ProductsContext.Provider>
-  )
-}
+  );
+};
 
 export default ProductsProvider;

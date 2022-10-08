@@ -1,9 +1,9 @@
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useMemo } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
 import { ProductsProvider, ShoppingCartProvider as CartProvider, useThemeMode } from "./context";
-import { Home, Store, About, Details, Categories } from "./pages";
+import { Home, Store, About, Products, ProductDetails, Categories } from "./pages";
 
 const App: React.FC = () => {
   const { theme } = useThemeMode();
@@ -62,17 +62,20 @@ const App: React.FC = () => {
           <Routes>
             <Route index element={<Home />} />
             <Route
-              path="/store"
+              path="store"
               element={
                 <ProductsProvider>
                   <Store />
                 </ProductsProvider>
               }
-            />
-            <Route path="/store/product/:id" element={<Details />} />
-            <Route path="/store/category" element={<Categories />} />
-            <Route path="/store/category/:id" element={<Categories />} />
-            <Route path="/about" element={<About />} />
+            >
+              <Route index element={<Products />} />
+              <Route path="product/:id" element={<ProductDetails />} />
+              <Route path="category" element={<Categories />} />
+              <Route path="category/:id" element={<Categories />} />
+              <Route path="*" element={<Navigate to={"/store"} replace={true} />} />
+            </Route>
+            <Route path="about" element={<About />} />
           </Routes>
         </Container>
       </CartProvider>

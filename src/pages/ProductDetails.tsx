@@ -1,7 +1,8 @@
-import { Typography, Rating, Box } from "@mui/material";
+import { Typography, ImageListItem } from "@mui/material";
 import type { ProductProps } from "../types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Image, ProductRating } from "../components";
 
 const Details: React.FC = () => {
   const [product, setProduct] = useState<ProductProps>({} as ProductProps);
@@ -23,31 +24,28 @@ const Details: React.FC = () => {
         if (err.name === "AbortError") return;
       });
 
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, [id]);
 
   return (
     <>
       {!loading ? (
         <>
+          <ImageListItem
+            sx={(theme) => ({
+              bgcolor: "#FFF",
+              "&:hover img": { transform: "scale(0.95)" },
+              [theme.breakpoints.up("sm")]: {
+                width: 450,
+              },
+            })}
+          >
+            <Image product={product} sx={{ height: 450 }} />
+          </ImageListItem>
           <Typography variant="h3" sx={{ fontWeight: 700, fontSize: 24 }}>
             {product.title}
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", columnGap: 0.5 }}>
-            <Rating
-              name="read-only"
-              defaultValue={product.rating.rate}
-              precision={0.5}
-              readOnly
-              size="small"
-              max={5}
-            />
-            <Typography component="p" variant="caption" fontSize="small" color="text.secondary">
-              {product.rating.rate} | {product.rating.count} ratings
-            </Typography>
-          </Box>
+          <ProductRating rate={product.rating.rate} count={product.rating.count} />
         </>
       ) : (
         <Typography variant="h5">Loading...</Typography>

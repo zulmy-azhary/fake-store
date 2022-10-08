@@ -46,7 +46,7 @@ const CartAction: React.FC<Props> = ({ product, quantity }) => {
           <DeleteForeverIcon sx={{ fontSize: 14 }} />
         </CustomButton>
         <QuantityAction size={14} id={product.id} quantity={quantity}>
-          <Typography component="h6" variant="caption" sx={{ fontWeight: 500, flexGrow: 2 }}>
+          <Typography component="span" variant="caption" sx={{ fontWeight: 500, flexGrow: 2 }}>
             {quantity}
           </Typography>
         </QuantityAction>

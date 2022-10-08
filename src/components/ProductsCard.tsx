@@ -1,12 +1,4 @@
-import {
-  ImageListItem,
-  ImageListItemBar,
-  Typography,
-  Button,
-  ListItemText,
-  Box,
-  Rating,
-} from "@mui/material";
+import { ImageListItem, ImageListItemBar, Typography, Button, ListItemText } from "@mui/material";
 import { Image, NavLink, ProductRating, ProductsAction } from ".";
 import { formatCurrency } from "../helper";
 import type { ProductProps } from "../types";
@@ -23,14 +15,19 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
 
   return (
     <ImageListItem sx={{ width: 248, justifySelf: "center" }}>
-      <NavLink
-        href={`/store/product/${product.id}`}
-        sx={{ backgroundColor: "#FFF", height: "100%" }}
-      >
-        <Tooltip title={product.title} arrow followCursor>
+      <Tooltip title={product.title} arrow followCursor>
+        <NavLink
+          href={`/store/product/${product.id}`}
+          sx={{
+            backgroundColor: "#FFF",
+            width: "100%",
+            height: 355,
+            "&:hover img": { transform: "scale(0.95)" },
+          }}
+        >
           <Image product={product} />
-        </Tooltip>
-      </NavLink>
+        </NavLink>
+      </Tooltip>
       <ImageListItemBar
         title={
           <NavLink href={`/store/product/${product.id}`}>

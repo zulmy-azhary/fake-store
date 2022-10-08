@@ -34,6 +34,7 @@ const CustomButton: React.FC<React.PropsWithChildren & Props> = ({
       ]}
       onClick={onClick}
       disabled={disabled}
+      aria-label="Action Button"
     >
       {children}
     </IconButton>

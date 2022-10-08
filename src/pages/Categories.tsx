@@ -9,11 +9,18 @@ const Categories: React.FC = () => {
   console.log(categories);
 
   useEffect(() => {
+    const controller: AbortController = new AbortController();
+    const signal: AbortSignal = controller.signal;
+
     if (id) {
-      fetch(`https://fakestoreapi.com/products/category/${id}`)
+      fetch(`https://fakestoreapi.com/products/category/${id}`, { signal })
         .then((res) => res.json())
-        .then((data) => setCategories(data));
+        .then((data) => setCategories(data))
+        .catch((err) => {
+          if (err.name === "AbortError") return;
+        });
     }
+    return () => controller.abort();
   }, []);
 
   return (

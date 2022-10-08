@@ -2,7 +2,7 @@ import { ImageListItem, Box } from "@mui/material";
 import React from "react";
 import { useProducts } from "../context";
 import type { CartItemProps, ProductProps } from "../types";
-import { CartAction, CartItemInfos, Image, NavLink } from '.';
+import { CartAction, CartItemInfos, Image, NavLink } from ".";
 
 const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
   const { products } = useProducts();
@@ -15,6 +15,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
         display: "flex",
         alignItems: "center",
         columnGap: 1,
+        "&:hover img": { transform: "scale(0.95)" },
       }}
     >
       <ImageListItem sx={{ width: 120, bgcolor: "#FFF" }}>
