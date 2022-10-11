@@ -39,6 +39,7 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
                 fontSize: 18,
                 color: theme.palette.primary.main,
               })}
+              title={product.title}
               noWrap
             >
               {product.title}

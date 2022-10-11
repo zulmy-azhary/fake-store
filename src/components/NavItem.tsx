@@ -13,9 +13,6 @@ const NavItem: React.FC = () => {
       <NavLink href="/store">
         <ListItemText primary={"Store"} />
       </NavLink>
-      <NavLink href="/category">
-        <ListItemText primary={"Categories"} />
-      </NavLink>
       <NavLink href="/about">
         <ListItemText primary={"About"} />
       </NavLink>

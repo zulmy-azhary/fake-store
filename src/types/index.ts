@@ -19,3 +19,6 @@ export interface CartItemProps {
   id: ID;
   quantity: number;
 }
+export type Breakpoint = number | string | boolean;
+export type ThemeType = "light" | "dark";
+export type CartAction<T, R> = (id: T) => R;

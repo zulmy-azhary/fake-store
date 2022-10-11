@@ -1,32 +1,30 @@
-import { Typography } from "@mui/material";
+import { Typography, ImageList } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import type { ProductProps } from "../types";
+import { useFetch } from "../hooks/useFetch";
+import { breakpoints, productsUrl } from "../helper";
+import { ProductsCard } from "../components";
 
 const Categories: React.FC = () => {
   const { id } = useParams();
-  const [categories, setCategories] = useState<ProductProps[]>([]);
-  console.log(categories);
+  const url = `${productsUrl}/category/${id}`;
+  const { data, error } = useFetch<ProductProps[]>(url);
+  const mediaState = breakpoints(1, 2, 3, 4) as number;
 
-  useEffect(() => {
-    const controller: AbortController = new AbortController();
-    const signal: AbortSignal = controller.signal;
-
-    if (id) {
-      fetch(`https://fakestoreapi.com/products/category/${id}`, { signal })
-        .then((res) => res.json())
-        .then((data) => setCategories(data))
-        .catch((err) => {
-          if (err.name === "AbortError") return;
-        });
-    }
-    return () => controller.abort();
-  }, []);
+  if (!data) return <Typography variant="h5">Loading...</Typography>;
+  if (error) return <Typography variant="h4">An error occurred...</Typography>;
 
   return (
-    <Typography variant="h3" sx={{ fontWeight: 700 }}>
-      Product Categories
-    </Typography>
+    <>
+      <Typography variant="overline" sx={{ fontWeight: 600, fontSize: 24 }}>
+        Category: "{id}"
+      </Typography>
+      <ImageList cols={mediaState} gap={24} sx={{ width: "100%", overflowY: "initial", mt: 6 }}>
+        {data.map((item: ProductProps) => (
+          <ProductsCard product={item} key={item.id} />
+        ))}
+      </ImageList>
+    </>
   );
 };
 

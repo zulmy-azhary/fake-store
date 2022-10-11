@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { productsUrl } from "../helper";
 import type { ProductProps } from "../types";
 
 interface ProductsCtx {
@@ -15,11 +16,11 @@ const ProductsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const controller: AbortController = new AbortController();
-    const signal: AbortSignal = controller.signal;
+    const controller = new AbortController();
+    const signal = controller.signal;
     setLoading(true);
 
-    fetch("https://fakestoreapi.com/products", { signal })
+    fetch(productsUrl, { signal })
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

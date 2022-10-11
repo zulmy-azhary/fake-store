@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Box
-      component="nav"
+      component="header"
       sx={{
         position: "fixed",
         top: 0,
@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
       }}
     >
       <Container
+        component="nav"
         maxWidth={false}
         sx={{
           width: "100%",

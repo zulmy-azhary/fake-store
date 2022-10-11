@@ -71,7 +71,6 @@ const App: React.FC = () => {
             >
               <Route index element={<Products />} />
               <Route path="product/:id" element={<ProductDetails />} />
-              <Route path="category" element={<Categories />} />
               <Route path="category/:id" element={<Categories />} />
               <Route path="*" element={<Navigate to={"/store"} replace={true} />} />
             </Route>

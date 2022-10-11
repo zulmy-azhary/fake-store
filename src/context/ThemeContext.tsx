@@ -1,9 +1,11 @@
 import React, { createContext, useCallback, useContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import type { ThemeType } from "../types";
+
 
 interface ThemeCtx {
-  theme: "light" | "dark";
-  setTheme?: React.Dispatch<React.SetStateAction<"light" | "dark">>;
+  theme: ThemeType;
+  setTheme?: React.Dispatch<React.SetStateAction<ThemeType>>;
   colorMode: () => void;
 }
 
@@ -15,7 +17,7 @@ const ThemeContext = createContext<ThemeCtx>({
 export const useThemeMode = (): ThemeCtx => useContext(ThemeContext);
 
 const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [theme, setTheme] = useLocalStorage<"light" | "dark">("Theme", "dark");
+  const [theme, setTheme] = useLocalStorage<ThemeType>("Theme", "dark");
 
   const colorMode = useCallback(() => {
     setTheme(theme === "light" ? "dark" : "light");

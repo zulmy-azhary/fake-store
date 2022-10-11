@@ -27,11 +27,11 @@ const Products: React.FC = () => {
               }}
             >
               <Skeleton variant="rectangular" width="100%" height={355} />
-              <Skeleton variant="text" width="100%" height={24} sx={{ mt: 0.5 }} />
-              <Skeleton variant="text" width="60%" height={16} sx={{ mt: 0.5 }} />
-              <Skeleton variant="text" width="80%" height={18} sx={{ mt: 0.5 }} />
-              <Skeleton variant="rounded" width="50%" height={24} sx={{ mt: 0.75 }} />
-              <Skeleton variant="text" width="100%" height={58} />
+              <Skeleton variant="text" width="100%" sx={{ fontSize: 20 }} />
+              <Skeleton variant="text" width="60%" sx={{ fontSize: 12 }} />
+              <Skeleton variant="text" width="80%" sx={{ fontSize: 16 }} />
+              <Skeleton variant="rounded" width="40%" height={22} sx={{ mt: 0.75 }} />
+              <Skeleton variant="rounded" width="100%" height={36} sx={{ mt: 1.25 }} />
             </Box>
           ))}
     </ImageList>

@@ -1,4 +1,7 @@
 import { useMediaQuery, useTheme } from "@mui/material";
+import type { Breakpoint } from "../types";
+
+export const productsUrl = "https://fakestoreapi.com/products";
 
 const CURRENCY = Intl.NumberFormat("en-US", {
   currency: "USD",
@@ -9,12 +12,7 @@ export const formatCurrency = (number: number): string => {
   return CURRENCY.format(number);
 };
 
-export const breakpoints = (
-  sm: number | string | boolean,
-  md?: number | string | boolean,
-  lg?: number | string | boolean,
-  xl?: number | string | boolean
-) => {
+export const breakpoints = (sm: Breakpoint, md?: Breakpoint, lg?: Breakpoint, xl?: Breakpoint) => {
   const theme = useTheme();
   const smBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
   const mdBreakpoint = useMediaQuery(theme.breakpoints.down("md"));
